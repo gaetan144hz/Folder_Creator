@@ -44,19 +44,45 @@ if "%ANJV%"=="jv" (
 )
 
 :jvFolder
-set JV_LIST=1-3D 2-Documents 3-Graphisme 4-Screenshot 5-Son 6-FX 7-Builds 8-Font 9-Mocap 10-Tools
-for %%F in (%JV_LIST%) do (
-    mkdir %%F
-    echo %%F
-)
+mkdir "1-GameDesign\General\Intentions"
+mkdir "1-GameDesign\General\Pitch"
+mkdir "1-GameDesign\General\GDD"
+mkdir "1-GameDesign\General\Vision Design"
+
+mkdir "1-GameDesign\Core\3C"
+mkdir "1-GameDesign\Core\3C\Character"
+mkdir "1-GameDesign\Core\3C\Camera"
+mkdir "1-GameDesign\Core\3C\Control"
+
+mkdir "1-GameDesign\Core\Mechanics"
+
+mkdir "1-GameDesign\Core\NPC\Xxxx"
+mkdir "1-GameDesign\Core\NPC\NarrativeNPC"
+mkdir "1-GameDesign\Core\NPC\Enemies"
+
+mkdir "1-GameDesign\Narration\Story\Storyboard"
+mkdir "1-GameDesign\Narration\MissionFlow"
+mkdir "1-GameDesign\Narration\MissionBrief"
+mkdir "1-GameDesign\Narration\NarativeFlow"
+
+mkdir "2-Art\Character"
+mkdir "2-Art\Environnement"
+mkdir "2-Art\VFX"
+mkdir "2-Art\Reference"
+
+mkdir "3-LevelDesign\MacroLD"
+mkdir "3-LevelDesign\Levels\Level_Xxxx"
+
+mkdir "4-SoundDesign\Listing"
 goto end
 
 :animFolder
 set AN_LIST=Characters Props Ressources Images
-for %%F in (%AN_LIST%) do (
-    mkdir %%F
-    echo %%F
+for %%a in (%AN_LIST%) do (
+    mkdir %%a
+    echo %%a
 )
+
 mkdir "Characters\Xxxx"
 echo Xxxx
 
@@ -145,12 +171,12 @@ mkdir "Characters\Xxxx\Maya\Ani\Locomotion\Ground\Turn\Ready\Export\anim"
 mkdir "Characters\Xxxx\Maya\Ani\Locomotion\Ground\Turn\Ready\Export\fbx"
 echo Turn\Ready\Export\anim
 echo Turn\Ready\Export\fbx
-
 goto end
+
 ::echo script path: %~dp0
 :end
-echo /////////////////////////////////////////////////////////
+echo ---------------------------------------------------------
 echo Arborescence de projet "%PROJECT_NAME%" cree avec succes!
-echo /////////////////////////////////////////////////////////
+echo ---------------------------------------------------------
 pause
 exit /b
