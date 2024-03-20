@@ -2,29 +2,64 @@
 setlocal enabledelayedexpansion
 
 
-set PROJECT="GDU_Hitman"
+rem Vérifier si le fichier de configuration existe
+set "CONFIG_PATH=%USERPROFILE%\Documents\%PROJECT%_launcher_config.txt"
+if not exist "%CONFIG_PATH%" (
+    :: #################### Project Name #####################
+    set PROJECT=GDU_Hitman
+    :: #######################################################
 
-:: #################### Launch State #####################
-set "TOOLS=true"
-set "PERFORCE=false"
-set "GIT=false"
-set "STEAM=false"
-set "OCULUS=false"
-set "UNREAL=false"
-set "UNITY=false"
-:: ######################################################
+    :: #################### Launch State #####################
+    set /p TOOLS="false"
+    set /p PERFORCE="false"
+    set /p GIT="false"
+    set /p STEAM="false"
+    set /p OCULUS="false"
+    set /p UNREAL="false"
+    set /p UNITY="false"
+    :: ######################################################
 
+    :: #################### Path of App #####################
+    set "STARTING_PAGE=https://start.me/p/aLz1Oj/page-d-accueil https://miro.com/app/board/uXjVNz6606I https://g144hz.atlassian.net/jira/software/projects/HIT/boards/5 https://g144hz.atlassian.net/wiki/spaces/Hitman/overview"
+    set "PERFORCE_PATH=C:\Program Files\Perforce\p4v.exe"
+    set GIT_PATH="D:\Users\g.dumas\AppData\Local\gitkraken\gitkraken.exe"
+    set STEAM_PATH="D:\steam\steam.exe"
+    set OCULUS_PATH="D:\Oculus\Support\oculus-client\OculusClient.exe"
+    set UNREALPROJECT_PATH="D:\Unreal_Project\UE_5.3\GDU_Hitman\%PROJECT%.uproject"
+    set "UNITYPROJECT_PATH=C:\Program Files\Unity Hub\Unity Hub.exe"
+    :: #######################################################
 
-:: #################### Path of App #####################
-set "STARTING_PAGE= https://start.me/p/aLz1Oj/page-d-accueil https://miro.com/app/board/uXjVNz6606I=/ https://g144hz.atlassian.net/jira/software/projects/HIT/boards/5 https://g144hz.atlassian.net/wiki/spaces/Hitman/overview"
-set "PERFORCE_PATH=C:\Program Files\Perforce\p4v.exe"
-set GIT_PATH="D:\Users\g.dumas\AppData\Local\gitkraken\gitkraken.exe"
-set STEAM_PATH="D:\steam\steam.exe"
-set OCULUS_PATH="D:\Oculus\Support\oculus-client\OculusClient.exe"
-set UNREALPROJECT_PATH="D:\Unreal_Project\UE_5.3\GDU_Hitman\%PROJECT%.uproject"
-set "UNITYPROJECT_PATH=C:\Program Files\Unity Hub\Unity Hub.exe"
-:: ######################################################
+    rem Écrire les valeurs par défaut dans le fichier de configuration
+    >"%CONFIG_PATH%" (
+        echo PROJECT=%PROJECT%
+        echo TOOLS=%TOOLS%
+        echo PERFORCE=%PERFORCE%
+    )
+    echo Valeurs par defaut definies et enregistrees dans "%CONFIG_PATH%"
+) else (
+    echo Je lis les valeurs
+    rem Lire les valeurs à partir du fichier de configuration
+    for /f "tokens=1,* delims==" %%a in (%CONFIG_PATH%) do (
+        :: #################### Project Name #####################
+        if "%%a"=="PROJECT" set PROJECT=%%b
+        :: #######################################################
 
+        :: #################### Launch State #####################
+        if "%%a"=="PERFORCE" set PERFORCE=%%b
+        if "%%a"=="TOOLS" set TOOLS=%%b
+        if "%%a"=="GIT" set GIT=%%b
+        if "%%a"=="STEAM" set STEAM=%%b
+        if "%%a"=="OCULUS" set OCULUS=%%b
+        if "%%a"=="UNREAL" set UNREAL=%%b
+        if "%%a"=="UNITY" set UNITY=%%b
+        :: ######################################################
+
+        :: #################### Path of App #####################
+        rem ajouter les autres App
+        if "%%a"=="STARTING_PAGE" set STARTING_PAGE=%%b
+        :: #######################################################
+    )
+)
 
 :: ######################################################
 echo Lancement des Applciations pour le Projet: %PROJECT%
@@ -38,7 +73,7 @@ echo Lancement des Applciations pour le Projet: %PROJECT%
 :: ######################################################
 
 :launch_tools
-if "%TOOLS%" == "true" (
+if %TOOLS% == "true" (
     for %%s in (%STARTING_PAGE%) do (
         start %%s
     )
@@ -50,7 +85,7 @@ if "%TOOLS%" == "true" (
 )
 
 :launch_perforce
-if "%PERFORCE%" == "true" (
+if %PERFORCE% == "true" (
     start "Perforce" "%PERFORCE_PATH%"
     echo ------------------
     echo Lancement Perforce
@@ -60,7 +95,7 @@ if "%PERFORCE%" == "true" (
 )
 
 :launch_git
-if "%GIT%" == "true" (
+if %GIT% == "true" (
     start "Git" "%GIT_PATH%"
     echo ----------------
     echo Lancement de Git
@@ -70,7 +105,7 @@ if "%GIT%" == "true" (
 )
 
 :launch_steam
-if "%STEAM%" == "true" (
+if %STEAM% == "true" (
     start "Steam" "%STEAM_PATH%"
     echo ------------------
     echo Lancement de Steam
@@ -80,7 +115,7 @@ if "%STEAM%" == "true" (
 )
 
 :launch_oculus
-if "%OCULUS%" == "true" (
+if %OCULUS% == "true" (
     start "Oculus" "%OCULUS_PATH%"
     echo -------------------
     echo Lancement de Oculus
@@ -90,7 +125,7 @@ if "%OCULUS%" == "true" (
 )
 
 :launch_unreal
-if "%UNREAL%" == "true" (
+if %UNREAL% == "true" (
     start "%PROJECT%" "%UNREALPROJECT_PATH%"
     echo --------------------------------------
     echo Lancement du Projet Unreal "%PROJECT%"
@@ -101,7 +136,7 @@ if "%UNREAL%" == "true" (
 
 
 :launch_unity
-if "%UNITY%" == "true" (
+if %UNITY% == "true" (
     start "%PROJECT%" "%UNITYPROJECT_PATH%"
     echo --------------------------------------
     echo Lancement du Projet Unity "%PROJECT%"
