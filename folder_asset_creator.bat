@@ -2,12 +2,12 @@
 setlocal enabledelayedexpansion
 
 :create_asset
-echo -------------------------------
-set /p "ASSET_NAME=Nom des Assets: "
-echo -------------------------------
+echo ---------------------------------------------------------------------------------------------------------------
+set /p "ASSET_NAME=Enter assets name with space between them, if you want space in your name folder please use _ : "
+echo ---------------------------------------------------------------------------------------------------------------
 
 if ASSET_NAME=="" (
-    echo "Error: No Name"
+    echo "Error: No Name or Incorrect Name"
 ) else (
     goto create_folder
 )
