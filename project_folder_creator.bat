@@ -74,6 +74,9 @@ mkdir "3-LevelDesign\MacroLD"
 mkdir "3-LevelDesign\Levels\Level_Xxxx"
 
 mkdir "4-SoundDesign\Listing"
+
+xcopy /s/z "folder_asset_creator.bat" "2-Art\Environnement\folder_asset_creator.bat" 
+
 goto end
 
 :animFolder
@@ -92,16 +95,11 @@ echo Maya\Ani
 echo Maya\Rig
 
 mkdir "Characters\Xxxx\Maya\Rig\Blast"
-mkdir "Characters\Xxxx\Maya\Rig\Export"
+mkdir "Characters\Xxxx\Maya\Rig\Export\anim"
 mkdir "Characters\Xxxx\Maya\Rig\Wip"
 echo Rig\Blast
 echo Rig\Export
 echo Rig\Wip
-
-mkdir "Characters\Xxxx\Maya\Rig\Export\anim"
-mkdir "Characters\Xxxx\Maya\Rig\Export\fbx"
-echo Rig\Export\anim
-echo Rig\Export\fbx
 
 mkdir "Characters\Xxxx\Maya\Ani\Locomotion"
 echo Ani\Locomotion
