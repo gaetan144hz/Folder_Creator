@@ -10,13 +10,13 @@ if not exist "%CONFIG_PATH%" (
     :: #######################################################
 
     :: #################### Launch State #####################
-    set /p TOOLS="false"
-    set /p PERFORCE="false"
-    set /p GIT="false"
-    set /p STEAM="false"
-    set /p OCULUS="false"
-    set /p UNREAL="false"
-    set /p UNITY="false"
+    set TOOLS="false"
+    set PERFORCE="false"
+    set GIT="false"
+    set STEAM="false"
+    set OCULUS="false"
+    set UNREAL="false"
+    set UNITY="false"
     :: ######################################################
 
     :: #################### Path of App #####################
@@ -32,8 +32,23 @@ if not exist "%CONFIG_PATH%" (
     rem Écrire les valeurs par défaut dans le fichier de configuration
     >"%CONFIG_PATH%" (
         echo PROJECT=%PROJECT%
+
         echo TOOLS=%TOOLS%
         echo PERFORCE=%PERFORCE%
+        echo GIT=%GIT%
+        echo STEAM=%STEAM%
+        echo OCULUS=%OCULUS%
+        echo UNREAL=%UNREAL%
+        echo UNITY=%UNITY%
+
+        echo STARTING_PAGE=%STARTING_PAGE%
+        echo PERFORCE_PATH=%PERFORCE_PATH%
+        echo GIT_PATH=%GIT_PATH%
+        echo STEAM_PATH=%STEAM_PATH%
+        echo OCULUS_PATH=%OCULUS_PATH%
+        echo UNREALPROJECT_PATH=%UNREALPROJECT_PATH%
+        echo UNITYPROJECT_PATH=%UNITYPROJECT_PATH%
+
     )
     echo Valeurs par defaut definies et enregistrees dans "%CONFIG_PATH%"
 ) else (
@@ -45,19 +60,25 @@ if not exist "%CONFIG_PATH%" (
         :: #######################################################
 
         :: #################### Launch State #####################
-        if "%%a"=="PERFORCE" set PERFORCE=%%b
         if "%%a"=="TOOLS" set TOOLS=%%b
+        if "%%a"=="PERFORCE" set PERFORCE=%%b
         if "%%a"=="GIT" set GIT=%%b
         if "%%a"=="STEAM" set STEAM=%%b
         if "%%a"=="OCULUS" set OCULUS=%%b
         if "%%a"=="UNREAL" set UNREAL=%%b
         if "%%a"=="UNITY" set UNITY=%%b
-        :: ######################################################
-
-        :: #################### Path of App #####################
-        rem ajouter les autres App
-        if "%%a"=="STARTING_PAGE" set STARTING_PAGE=%%b
         :: #######################################################
+
+        :: #################### Path of App Reader #####################
+        rem ajouter les autres App
+        if "%%a"=="STARTING_PAGE" set "STARTING_PAGE=%%b"
+        if "%%a"=="PERFORCE_PATH" set "PERFORCE_PATH=%%b"
+        if "%%a"=="GIT_PATH" set GIT_PATH=%%b
+        if "%%a"=="STEAM_PATH" set STEAM_PATH=%%b
+        if "%%a"=="OCULUS_PATH" set OCULUS_PATH=%%b
+        if "%%a"=="UNREALPROJECT_PATH" set "UNREALPROJECT_PATH=%%b"
+        if "%%a"=="UNITYPROJECT_PATH" set "UNITYPROJECT_PATH=%%b"
+        :: ############################################################
     )
 )
 
